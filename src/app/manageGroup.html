@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.Members{
+    height: 100vh;
+    float: left;
+}
+.nonMembers{
+    height: 100vh;
+    float: right;
+}
+.member{
+    width: 25%;
+    display: inline-block;
+}
+
+.body{
+    display: inline-block;
+    width: 100%;
+    height: 100vh;
+}
+</style>
+<h1><%=group.name%></h1>
+
+</head>
+<body>
+<h2>Members</h2>
+    <div class="body">
+        <div class="Members">
+            <% for(i = 0; i < members.length;i++){ %>
+                <div class="member">
+                    <p><%=members[i].userName%></p>
+                    <form action="/removeGroupUser" method="post">
+                        <input type="hidden" name="user"value="<%=loggedUser%>"/>
+                        <input type="hidden" name="group" value="<%=group.id - 1%>" />
+                        <button type="submit" class="btn">Remove</button>
+                    </form>
+
+                    <form action="/makeGroupAssis" method="post">
+                        <button type="submit" class="btn">Make group Assistant</button>
+                    </form>
+                    <%}%>
+                </div>
+        </div>
+        <h2>Non-Members</h2>
+        <div class="nonMemebers">
+            <div class="nonMember">
+                <% for(i = 0; i < nonMembers.length;i++){ %>
+                    <p><%=nonMembers[i].userName%></p>
+                    <form action="/addMember" method="post">
+                        <button type="submit" class="btn">Add</button>
+                    </form>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

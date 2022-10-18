@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  .body {font-family: Arial, Helvetica, sans-serif;}
+.heading {
+    height: 5vh;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.Page{
+  
+  position:absolute;
+  width:100%;
+  height:100vh;
+}
+
+.GroupButtonDiv{
+  
+   margin-top: 5px;
+   margin-right: 5px;
+   margin-left: 10px;
+  
+   width: 100%;
+}
+.GroupBtn{
+  display: block;
+  width: 100%;
+  background-color: rgb(19, 169, 24);
+  color: rgb(0, 0, 0);
+ 
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.GroupDiv{
+  
+  
+  margin-left: 0px;
+  
+  height: 100vh;
+  position: absolute;
+  width: 25%;
+ 
+}
+.message-area{
+  position: absolute;
+  right: 10px;
+  
+  
+  width:70%;
+  height: 100vh;
+
+
+}
+.Body{
+  margin-top:30px;
+
+  display: inline-block;
+  height: 100vh;
+  width:100%;
+  
+}
+.buttons{
+  display: inline-block;
+}
+.Button {
+  background-color: rgb(19, 169, 24);
+  color: rgb(0, 0, 0);
+ 
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  
+  
+  width: 280px;
+}
+.button{
+    display: block;
+}
+/* The popup form - hidden by default */
+.form-popup {
+    font-family:Arial, Helvetica, sans-serif;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 95vh;
+  z-index: 9;
+
+ 
+  
+}
+
+/* Add styles to the form container */
+.form-container {
+  
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+ 
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: rgb(255, 255, 255);
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+
+</style>
+</head>
+<body>
+
+    <h2 style="padding: 10px;"></h2>
+<div>
+    <div class="Page" id="Page">
+       
+
+
+        <div class="Body" id="Body">
+                <div  class="GroupDiv" id="groups">
+                  <div class="GroupButtonDiv">
+                    <button class="btn" onclick="openForm()">Create Group</button> 
+                    
+                      <%for(var i = 0; i <= groups.length - 1;i++ ) "{{ '{' }}"%>
+                        <div class="buttons">
+                       <button class="btn"><%=groups[i].name%></button> 
+                       <form action="/manageGroup" method="post">
+                         <input type="hidden" name="id" value="<%=groups[i].id%>" />
+                         <input type="hidden" name="loggedUser" value="<%=userData.id%>" />
+                          <button type="submit" class="manageBtn"> Manage </button>
+                        
+                       </form>
+                       <form action="/deleteGroup" method="post">
+                          
+                          <input type="hidden" name="id" value="<%=i%>" />
+                          <input type="hidden" name="userName" value="<%=userData.userName%>" />
+                          
+                          <button type="submit">delete</button>
+                       </form>
+                      </div>
+                       <% "{{ '}' }}" %>
+                    
+                </div> 
+                  
+                </div>
+
+                <div class="message-area" id="message-area"></div>
+        </div>
+
+
+
+    </div>
+
+    <div class="form-popup" id="myForm">
+      <form action="/createGroup" method="post" class="form-container">
+        <h1>Create Group</h1>
+
+        <label for="groupName"><b>Name</b></label>
+        <input type="text" placeholder="Enter Group Name" name="groupName" required>
+    
+
+        <button type="submit" class="btn"  >Create</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    </div>
+
+  
+
+
+</div>
+
+
+<script>
+    /*
+    let data = 
+    let groupDiv = document.getElementById("groups");
+    
+    data.forEach((item) => {
+
+        var  btn = document.createElement("button");
+        var div = document.createElement("div");
+        btn.innerText = item;
+        div.appendChild(btn);
+        div.className = "GroupButtonDiv";
+        btn.className =  "btn";
+        groupDiv.appendChild(div);
+
+   // document.getElementById(groups).innerHTML += "<h1>Hello</h1>";
+  });
+*/
+</script>
+
+
+
+<div class="manageGroup" id="manageGroup">
+  <form action="/action_page.php" class="form-container">
+    <h1></h1>
+
+    
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("Page").style.display = "none";
+  document.getElementById("myForm").style.display="block";
+
+}
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+  document.getElementById("Page").style.display = "block";
+}
+
+function reload(){
+  location.reload()
+}
+</script>
+
+</body>
+</html>
+
