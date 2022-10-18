@@ -41,7 +41,7 @@ app.post('/getUser', (req, res) => {
     }
 })
 app.post('/login', (req, res) => {
-    //console.log(req, "00")
+    
     auth()
     async function auth(){
     try{
