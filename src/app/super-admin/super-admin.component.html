@@ -45,21 +45,42 @@
  
 }
 .message-area{
-  position: absolute;
-  right: 10px;
-  
-  
-  width:70%;
-  height: 100vh;
-
-
+  position: fixed;
+  border-style: outset;
+  left: 30%;
+  bottom: 0;
+  top:0;
+  overflow: auto;
+  width:75%;
+  right: 0;
+  border:#000000;
+  border-radius: 10px;
+  background-color:#6abb7d;
+  opacity: 0.8;
+}
+.m{
+  position: fixed;
+  border-style: outset;
+  left: 30%;
+  bottom: 0;
+  top:0;
+  overflow: auto;
+  width:75%;
+  right: 0;
+  border:#000000;
+  border-radius: 10px;
+  background-color:#0a3114;
+  opacity: 0.8;
+  display: none;
+  z-index:9;
 }
 .Body{
   margin-top:30px;
-
-  display: inline-block;
+  position: fixed;
+  
   height: 100vh;
-  width:100%;
+  width:100vw;
+ 
   
 }
 .buttons{
@@ -124,121 +145,113 @@
   border: none;
   cursor: pointer;
   width: 100%;
-  margin-bottom:10px;
+  margin-top:10px;
   opacity: 0.8;
 }
+.manageBtn{
+  border: none;
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: #04AA6D;
+  color: white;
+}
+.roomBtn{
+  border: none;
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: #000000;
+  color: white;
+}
+.heading{
+  position:relative;
+  font-family: arial;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.form{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    align-items: center;
 
-
+    background: black;
+}
+#form{
+  padding: 10px;
+}
+.chatBtn{
+  border: none;
+  background-color: #04AA6D;
+}
+.messages{
+  overflow: auto;
+}
 </style>
+
 </head>
 <body>
 
-    <h2 style="padding: 10px;"></h2>
-<div>
+    <h2 class="heading" id="d">Hi {{ this.user.name}}</h2>
+ 
     <div class="Page" id="Page">
        
 
 
         <div class="Body" id="Body">
                 <div  class="GroupDiv" id="groups">
-                  <div class="GroupButtonDiv">
-                    <button class="btn" onclick="openForm()">Create Group</button> 
-                    
-                      <%for(var i = 0; i <= groups.length - 1;i++ ) "{{ '{' }}"%>
-                        <div class="buttons">
-                       <button class="btn"><%=groups[i].name%></button> 
-                       <form action="/manageGroup" method="post">
-                         <input type="hidden" name="id" value="<%=groups[i].id%>" />
-                         <input type="hidden" name="loggedUser" value="<%=userData.id%>" />
-                          <button type="submit" class="manageBtn"> Manage </button>
-                        
-                       </form>
-                       <form action="/deleteGroup" method="post">
-                          
-                          <input type="hidden" name="id" value="<%=i%>" />
-                          <input type="hidden" name="userName" value="<%=userData.userName%>" />
-                          
-                          <button type="submit">delete</button>
-                       </form>
-                      </div>
-                       <% "{{ '}' }}" %>
-                    
-                </div> 
-                  
-                </div>
+                  <div class="GroupButtonDiv" id="GroupButtonDiv">
+                    <button class="btn" id="createGroup" onclick="openForm()">Create Group</button> 
+                    <div *ngFor="let group of groups.groups">
+                      <button class="btn">{{group[0].name}}</button>
 
-                <div class="message-area" id="message-area"></div>
+                      <button class="manageBtn">Manage Group</button>
+                      
+
+                        <div *ngFor="let room of group[0].rooms">
+                          <button class="roomBtn">{{room.name}}</button>
+                        </div>
+                     
+                    </div>
+                     
+                      </div>
+                </div>
+          
+        <div class="message-area" id="message-area">
+
+          <div class="messages" *ngFor="let msg of messageList" [ngClass]="{mine: msg.mine}">
+
+            <div class="user-message">
+              <div class="message-box">
+                <p class="name">{{ msg.userName }}</p>
+                <br/>
+                <p class="message">{{ msg.message }}</p>
+              </div>
+            </div>
+
+          </div>
+
+
+
+          <div class="s">
+            sjdnks
+          </div>
+
+          <div class="form">
+            <form id="form">
+              <label for="message-input">Message</label>
+              <input type="text" id="message-input" [(ngModel)] = "message" name="message">
+              <button type="submit" id="send-button" class="chatBtn" (click)="sendMessage()">Send</button>
+              <label for="room-input" >Room</label>
+              <input type="text" id="room-input">
+              <button type="button" id="room-button" class="chatBtn">Join</button>
+            </form>
+          </div>
+        </div>
         </div>
 
-
-
     </div>
 
-    <div class="form-popup" id="myForm">
-      <form action="/createGroup" method="post" class="form-container">
-        <h1>Create Group</h1>
-
-        <label for="groupName"><b>Name</b></label>
-        <input type="text" placeholder="Enter Group Name" name="groupName" required>
     
-
-        <button type="submit" class="btn"  >Create</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-      </form>
-    </div>
-
-  
-
-
-</div>
-
-
-<script>
-    /*
-    let data = 
-    let groupDiv = document.getElementById("groups");
-    
-    data.forEach((item) => {
-
-        var  btn = document.createElement("button");
-        var div = document.createElement("div");
-        btn.innerText = item;
-        div.appendChild(btn);
-        div.className = "GroupButtonDiv";
-        btn.className =  "btn";
-        groupDiv.appendChild(div);
-
-   // document.getElementById(groups).innerHTML += "<h1>Hello</h1>";
-  });
-*/
-</script>
-
-
-
-<div class="manageGroup" id="manageGroup">
-  <form action="/action_page.php" class="form-container">
-    <h1></h1>
-
-    
-  </form>
-</div>
-
-<script>
-function openForm() {
-  document.getElementById("Page").style.display = "none";
-  document.getElementById("myForm").style.display="block";
-
-}
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-  document.getElementById("Page").style.display = "block";
-}
-
-function reload(){
-  location.reload()
-}
-</script>
-
 </body>
 </html>
 
