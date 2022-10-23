@@ -11,7 +11,8 @@ import { GroupAdminComponent } from './group-admin/group-admin.component';
 import { GroupAssisComponent } from './group-assis/group-assis.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
-import {AuthService} from  './services/auth.service'
+import {AuthService} from  './services/auth.service';
+import { CreateGroupPopupComponent } from './create-group-popup/create-group-popup.component'
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {AuthService} from  './services/auth.service'
     GroupAssisComponent,
     UserComponent,
     LoginComponent,
+    CreateGroupPopupComponent,
    
     
   ],
@@ -30,7 +32,8 @@ import {AuthService} from  './services/auth.service'
     AppRoutingModule ,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

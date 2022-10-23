@@ -17,22 +17,15 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService, private user: UserServiceService) {
     
    }
-
+    username = ''
+    password = ''
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-        username:[''],
-        password:['']
-    })
+ 
   }
 
   onSubmit(){
-    if(!this.loginForm.valid){
-      console.log("KK")
-      return
-    }
-    const username = this.loginForm.value.username
-    const password = this.loginForm.value.password
-    let obs = this.authService.login(username, password)
+    console.log(this.username, this.password)
+    let obs = this.authService.login(this.username, this.password)
     
     //let userData: any
      obs.subscribe(res => {
@@ -41,8 +34,8 @@ export class LoginComponent implements OnInit {
         let userData: any
         
         userData = res
-        console.log(userData._id)
-        if(userData.length != []){
+        console.log(userData)
+        if(userData.role){
             
             console.log(userData)
             if (userData.role == "superAdmin"){
@@ -62,6 +55,9 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl(url)
 
             
+          }else{
+            let alert: any = document.getElementById('incorrect')
+            alert.style.display = 'block'
           }
           
 }) 

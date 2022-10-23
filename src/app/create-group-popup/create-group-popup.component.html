@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+        <style>
+            .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+.form-container input[type=text]  {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+.form-container {
+  
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+ 
+}
+
+.form-popup {
+    font-family:Arial, Helvetica, sans-serif;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 95vh;
+  z-index: 9;
+
+ 
+  
+}
+        </style>
+    </head>
+    <body>
+        <div class="form-popup" id="myForm">
+            <form  class="form-container">
+              <h1>Create Group</h1>
+      
+              <label for="groupName"><b>Name</b></label>
+              <input type="text" placeholder="Enter Group Name" name="groupName" required>
+          
+      
+              <button type="submit" class="btn"  >Create</button>
+              <button type="button" class="btn cancel" >Close</button>
+            </form>
+          </div>
+        
+        
+    </body>
+</html>

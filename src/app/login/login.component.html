@@ -53,23 +53,31 @@ span.psw {
      width: 100%;
   }
 }
+.incorrect {
+  color: red;
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 10;
+  display:none;
+}
 </style>
 </head>
 <body>
 
 <h2 style="padding:16px;">Login</h2>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form >
   
 
  
     <label for="uname"><b>Username</b></label>
-    <input type = "text" placeholder="Enter Username" name="username" formControlName = "username" >
-
+    <input type = "text" placeholder="Enter Username" name="username" [(ngModel)] = "username" >
+    
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" formControlName = "password">
-        
-    <button type="submit" >Login</button>
+    <input type="password" placeholder="Enter Password" name="password" [(ngModel)] = "password">
+    <div class="incorrect" id="incorrect">
+      Incorrect Credentials
+    </div>
+    <button type="submit"  class="btn" (click)="onSubmit()">Login</button>
     
   
 

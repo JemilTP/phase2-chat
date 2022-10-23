@@ -12,8 +12,8 @@ export class UserServiceService {
     return res
   }
 
-  getGroups(groupNames: []){
-    let res = this.http.post("http://localhost:3000/getGroups", groupNames)
+  getGroup(groups: any){
+    let res = this.http.post("http://localhost:3000/getGroup", groups)
     return res
   }
 }
