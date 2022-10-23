@@ -358,8 +358,11 @@ export class SuperAdminComponent implements OnInit {
   }
   changeUserRole(user: any, role: any){
     this.webSocket.emit('changeUserRole', {userName: user.name, role: role})
-    let userIndex = this.allUsers.indexOf(user)
-    this.allUsers[userIndex].role = role
+    for(let i in this.allUsers){
+      if(this.allUsers[i].name == user.name){
+        this.allUsers[i].role = role
+      }
+    }
   }
   addUser(){
       let newUser = {name: this.newUsername, password: this.newPassword, role: this.newRole, email: this.newEmail, Groups: []}
