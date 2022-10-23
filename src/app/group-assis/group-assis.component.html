@@ -1,273 +1,392 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  .body {font-family: Arial, Helvetica, sans-serif;}
-.heading {
-    height: 5vh;
-    font-family:Arial, Helvetica, sans-serif;
-}
-.Page{
-  
-  position:fixed;
-  
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-.GroupButtonDiv{
-  
-   margin-top: 5px;
-   margin-right: 5px;
-   margin-left: 10px;
-  
- 
-}
-.GroupBtn{
-  display: block;
-  width: 100%;
-  background-color: rgb(19, 169, 24);
-  color: rgb(0, 0, 0);
- 
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-}
-.GroupDiv{
-  overflow: auto;
-  bottom: 50px;
-  left: 0px;
-  top: 50px;
-  width: 20%;
-  position: fixed;
-  
- 
-}
-.message-area{
-  position: fixed;
-  border-style: outset;
-  width: 60%;
-  bottom: 50px;
-  top:50px;
-  overflow: auto;
-  
-  right: 0px;
-  border:#ffffff;
-  border-radius: 20px;
-  border-style: solid;
-  background-color:#000000;
-  opacity: 0.8;
-  padding: 10px;
+    .heading {
+      height: 5vh;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-}
+    .Page {
 
-.Body{
-  margin-top:30px;
-  position: fixed;
-  
-  height: 100vh;
-  width:100vw;
-  font-family: arial;
-  
-}
-.buttons{
-  display: inline-block;
-}
-.Button {
-  background-color: rgb(19, 169, 24);
-  color: rgb(0, 0, 0);
- 
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  
-  
-  width: 280px;
-}
-.button{
-    display: block;
-}
-/* The popup form - hidden by default */
-.form-popup {
-    font-family:Arial, Helvetica, sans-serif;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 95vh;
-  z-index: 9;
+      position: fixed;
 
- 
-  
-}
+    }
 
-/* Add styles to the form container */
-.form-container {
-  
-  padding: 10px;
-  background-color: rgb(255, 255, 255);
- 
-}
+    .GroupButtonDiv {
 
-/* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-}
+      margin-top: 5px;
+      margin-right: 5px;
+      margin-left: 10px;
 
-/* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: rgb(255, 255, 255);
-  outline: none;
-}
 
-/* Set a style for the submit/login button */
-.btn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-top:10px;
-  opacity: 0.8;
-  border-radius: 5px;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-}
-.manageBtn{
-  cursor: pointer;
-  border: none;
-  margin-bottom: 10px;
-  width: 100%;
-  border-radius: 5px;
-  background-color: #04AA6D;
-  color: white;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-}
-.roomBtn{
-  cursor: pointer;
-  border: none;
-  margin-bottom: 10px;
-  width: 100%;
-  background-color: #535353;
-  color: white;
-  border-radius: 5px;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-}
-.heading{
-  position:relative;
-  
-  padding: 10px;
-  margin-bottom: 10px;
-}
-.form{
-    position: fixed;
-    width: 100%;
-    left: 0px;
-    align-items: center;
-    bottom: 0;
-    background: black;
-}
-#form{
-  padding: 10px;
-  
-}
-.chatBtn{
-  border: none;
-  background-color: #04AA6D;
-  border-radius: 5px;
-}
- 
-.chat-title{
-  font-size: 20px;
-  color: white;
-  top: 0;
-  left: 0;
-  text-align: center;
-  width: 100%;
-  background-color: black;
-  height: 40px;
-  position:fixed;
-  font-family:Arial, Helvetica, sans-serif;
-}
-.messages{
- 
-  border-style: solid;
-  border-color: black;
-  
-}
-.message-box{
- color: white
- 
-}
-</style>
+    }
+
+    .GroupBtn {
+      display: block;
+      width: 100%;
+      background-color: rgb(19, 169, 24);
+      color: rgb(0, 0, 0);
+
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    .GroupDiv {
+      overflow: auto;
+      bottom: 50px;
+      left: 0px;
+      top: 50px;
+
+      position: fixed;
+
+
+    }
+
+    .message-area {
+      position: fixed;
+      border-style: outset;
+      width: 60%;
+      bottom: 50px;
+      top: 50px;
+      overflow: auto;
+
+      right: 0px;
+      border: #ffffff;
+      border-radius: 20px;
+      border-style: solid;
+      background-color: #000000;
+      opacity: 0.8;
+      padding: 10px;
+
+    }
+
+    .Body {
+      margin-top: 30px;
+      position: fixed;
+
+      height: 100vh;
+      width: 100vw;
+      font-family: arial;
+
+    }
+
+    .buttons {
+      display: inline-block;
+    }
+
+    .Button {
+      background-color: rgb(19, 169, 24);
+      color: rgb(0, 0, 0);
+
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+
+
+      width: 280px;
+    }
+
+    .button {
+      display: block;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      font-family: Arial, Helvetica, sans-serif;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 95vh;
+      z-index: 9;
+
+
+
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+
+      padding: 10px;
+      background-color: rgb(255, 255, 255);
+
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: rgb(255, 255, 255);
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      opacity: 0.8;
+      border-radius: 5px;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .manageBtn {
+      cursor: pointer;
+      border: none;
+      margin-bottom: 10px;
+      width: 100%;
+      border-radius: 5px;
+      background-color: #04AA6D;
+      color: white;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .roomBtn {
+      cursor: pointer;
+      border: none;
+      margin-bottom: 10px;
+      width: 100%;
+      background-color: #535353;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .heading {
+      position: relative;
+
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .form {
+      position: fixed;
+      width: 100%;
+      left: 0px;
+      align-items: center;
+      bottom: 0;
+      background: black;
+    }
+
+    #form {
+      padding: 10px;
+
+    }
+
+    .chatBtn {
+      border: none;
+      background-color: #04AA6D;
+      border-radius: 5px;
+    }
+
+    .chat-title {
+      font-size: 20px;
+      color: white;
+      top: 0;
+      left: 0;
+      text-align: center;
+      width: 100%;
+      background-color: black;
+      height: 40px;
+      position: fixed;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .messages {
+
+      border-style: solid;
+      border-color: black;
+
+    }
+
+    .message-box {
+      color: white
+    }
+
+    .manageGroup {
+      display: none;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #mngGroupCloseBtn {
+      bottom: 0px;
+
+    }
+    .manageUsers{
+      display: none;
+      font-family: Arial;
+    }
+
+    #deleteGroup {
+      margin-bottom: 15px;
+    }
+    .changeRole{
+      overflow: auto;
+      padding: 5px;
+    }
+    #didNotFindUser {
+      display: none;
+      color: red;
+    }
+
+    #roomNameTaken {
+      display: none;
+      color: red;
+    }
+
+    #userAlreadyInRoom {
+      display: none;
+      color: red;
+    }
+
+    #roomDoesNotExist {
+      display: none;
+      color: red;
+    }
+
+    #roomExists {
+      display: none;
+      color: red;
+    }
+    #userAlreadyInGroup{
+      display: none;
+      color: red;
+    }
+  </style>
 
 </head>
+
 <body>
-  <div class="chat-title">
+  <div class="chat-title" id="chat-title">
     <div class="chat-title-body">
       {{currentGroup.name}} - {{currentRoom.name}}
+    </div>
   </div>
-  </div>
-  
- 
-    <div class="Page" id="Page">
-       
 
 
-        <div class="Body" id="Body">
-                <div  class="GroupDiv" id="groups">
-                  <div class="GroupButtonDiv" id="GroupButtonDiv">
-                    <h2 class="heading" id="d">Hi {{ this.user.name}}</h2>
-                    
-                    <div *ngFor="let group of groups">
-                      <button class="btn" (click)="changeGroup(group.name)">{{group.name}}</button>
+  <div class="Page" id="Page">
 
-                      <button class="manageBtn">Manage Group</button>
-                      
 
-                        <div *ngFor="let room of group.rooms">
-                          <button class="roomBtn"  (click)="changeRoom(room, group)">{{room.name}}</button>
-                        </div>
-                     
-                    </div>
-                     
-                      </div>
-                </div>
-          <div>
-            
+
+    <div class="Body" id="Body">
+      <div class="GroupDiv" id="groups">
+
+        <h2 class="heading" id="d">Hi {{ this.user.name}}</h2>
+        <div class="GroupButtonDiv" id="GroupButtonDiv">
+
+          <div *ngFor="let group of groups">
+            <button class="btn">{{group.name}}</button>
+
+            <button class="manageBtn" (click)="manageGroup(group)">Manage Group</button>
+
+
+            <div *ngFor="let room of group.rooms">
+              <button class="roomBtn" (click)="changeRoom(room, group)">{{room.name}}</button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div>
+
         <div class="message-area" id="message-area">
-         
-          <div class="messages" >
+
+          <div class="messages">
 
             <div class="user-message" *ngFor="let msg of messageList">
               <div class="message-box">
                 <p class="name">{{ msg.userName }}: {{ msg.message }}</p>
-                
+
               </div>
             </div>
 
           </div>
 
-       
-      </div>
-        
-        
-        </div>
-</div>
-    </div>
-    <div class="form">
-      <form id="form">
-        <label for="message-input">Message</label>
-        <input type="text" id="message-input" [(ngModel)] = "message" name="message">
-        <button type="submit" id="send-button" class="chatBtn" (click)="sendMessage()">Send</button>
-      
-      </form>
-    </div>
-    
-</body>
-</html>
 
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="form" id="form">
+    <form id="form">
+      <label for="message-input">Message</label>
+      <input type="text" id="message-input" [(ngModel)]="message" name="message">
+      <button type="submit" id="send-button" class="chatBtn" (click)="sendMessage()">Send</button>
+
+    </form>
+  </div>
+
+
+  <div class="manageGroup" id="manageGroup">
+    <h1>{{groupBeingManaged.name}}</h1>
+    
+    <br>
+    <h2>Rooms</h2>
+    <input [(ngModel)]="newRoomName" placeholder="Room Name">
+    <button (click)="createRoom()"> Create Room</button>
+    <br>
+    <p id="roomExists"> Room already Exists</p>
+    <br>
+    <input [(ngModel)]="userAddedToRoom" placeholder="Enter user to add">
+    <input [(ngModel)]="roomToAddUser" placeholder="Room Name">
+    <button (click)="addUserToRoom()">Add</button>
+    <p id="didNotFindUser">User does not Exist</p>
+    <p id="userAlreadyInRoom">User already in Room</p>
+    <p id="roomDoesNotExist">Room Does not Exist</p>
+    <p id="roomNameTaken">Room Name Taken</p>
+    <div *ngFor="let room of groupBeingManaged.rooms">
+      <div class="roomsBeingManaged">
+        {{room.name}}
+        <br>
+        Users:
+        <button (click)="deleteRoom(room.name)">Delete</button>
+        <br>
+
+
+        <div *ngFor="let user of room.members">
+          {{user}}
+          <button class="removeUserFromRoom" (click)="removeUserFromRoom(user, room)">remove</button>
+          <br>
+          
+        </div>
+        <br><br>
+      </div>
+    </div>
+
+    <button class="btn" (click)="closeForm('manageGroup'); closeMng()" id="mngGroupCloseBtn">Close</button>
+  </div>
+
+
+    
+    <br>
+
+
+
+  
+</body>
+
+</html>

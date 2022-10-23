@@ -308,6 +308,8 @@ export class GroupAdminComponent implements OnInit {
     }
   }
   closeMng() {
+    
+    this.webSocket.emit('updateGroups', this.groupBeingManaged)
     this.userAddedToRoom = ''
     this.newRoomName = ''
     this.roomToAddUser = ''

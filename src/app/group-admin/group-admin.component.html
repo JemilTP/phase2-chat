@@ -294,7 +294,7 @@
 
         <h2 class="heading" id="d">Hi {{ this.user.name}}</h2>
         <div class="GroupButtonDiv" id="GroupButtonDiv">
-          <button class="btn" (click)="openForm('manageUsers')">Create User</button>
+         
           <button class="btn" (click)="openForm('form-popup')">Create Group</button>
           <div *ngFor="let group of groups">
             <button class="btn">{{group.name}}</button>
@@ -409,15 +409,6 @@
     
     <br>
 
-    <div class="createUser" id="createUser">
-      <h2>Create User</h2>
-      <input [(ngModel)]="newUsername" placeholder="Username"> <br>
-      <input [(ngModel)]="newEmail" placeholder="Email"> <br>
-      <input [(ngModel)]="newRole" placeholder="Role"> <br>
-      <input [(ngModel)]="newPassword" placeholder="Password"> <br>
-
-      <button (click)="addUser()" class="btn" id="addUser">Add User</button>
-    </div>
     <button class="btn"(click)="closeForm('manageUsers'); closeUserPopup()" id="mngUsersBtn">Close</button>
   </div>
 

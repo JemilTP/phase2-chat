@@ -134,6 +134,17 @@ io.on('connection', function (socket)  {
             }
         }
     }) 
+    socket.on('updateGroups', (group) => {
+        updateGroups()
+        console.log(group)
+        async function updateGroups(){
+            try{
+                await Groups_scheme.updateOne({name: group.name}, {$set: {rooms: group.rooms, members: group.members}})
+            }catch{
+
+            }
+        }
+    })
     
 })
 const cors = require('cors')
@@ -150,6 +161,7 @@ app.set("view engine", "html")
 const userRouter = require('./routes')
 const { runMain } = require('module')
 const { getUsers } = require('./functions')
+const { group } = require('console')
 mongoose.connect("mongodb://localhost:27017/chatdb")
 
 

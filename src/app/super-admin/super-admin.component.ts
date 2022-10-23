@@ -316,9 +316,11 @@ export class SuperAdminComponent implements OnInit {
     }
   }
   closeMng() {
+    this.webSocket.emit('updateGroups', this.groupBeingManaged)
     this.userAddedToRoom = ''
     this.newRoomName = ''
     this.roomToAddUser = ''
+    this.userAddedToGroup = ''
     let err: any = document.getElementById('didNotFindUser')
     let err2: any = document.getElementById('userAlreadyInRoom')
     err.style.display = 'none'

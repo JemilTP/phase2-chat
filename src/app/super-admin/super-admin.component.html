@@ -232,19 +232,65 @@
     #mngGroupCloseBtn {
       bottom: 0px;
 
+
     }
-    .manageUsers{
+
+    .manageUsers {
       display: none;
       font-family: Arial;
+      overflow: auto;
+      position: fixed;
+      top: 20px;
+      bottom: 300px;
+      width: 40%;
+      padding: 10px;
+    }
+
+    .manageUsersDiv {
+
+      align-items: center;
+      height: 200px;
+
+    }
+
+    .createUser {
+      position: fixed;
+      bottom: 10px;
+    }
+
+    .manageUserBtn {
+      width: 80%;
+
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 5px;
+      padding: 10px 16px;
+    }
+
+    .manageUsersTitle {
+
+      top: 0px;
+    }
+
+    .userTitle {
+      margin-top: 5px;
     }
 
     #deleteGroup {
       margin-bottom: 15px;
     }
-    .changeRole{
-      overflow: auto;
+
+    .changeRole {
+
       padding: 5px;
+      margin-bottom: 5px;
+      margin-top: 20px;
     }
+
     #didNotFindUser {
       display: none;
       color: red;
@@ -269,7 +315,8 @@
       display: none;
       color: red;
     }
-    #userAlreadyInGroup{
+
+    #userAlreadyInGroup {
       display: none;
       color: red;
     }
@@ -294,6 +341,7 @@
 
         <h2 class="heading" id="d">Hi {{ this.user.name}}</h2>
         <div class="GroupButtonDiv" id="GroupButtonDiv">
+
           <button class="btn" (click)="openForm('manageUsers')">Manage Users</button>
           <button class="btn" (click)="openForm('form-popup')">Create Group</button>
           <div *ngFor="let group of groups">
@@ -357,7 +405,7 @@
     <h1>{{groupBeingManaged.name}}</h1>
     <h2>Users</h2>
 
-    <input [(ngModel)] = 'userAddedToGroup' placeholder="User Name to add">
+    <input [(ngModel)]='userAddedToGroup' placeholder="User Name to add">
     <button (click)="addUserToGroup()">Add</button>
     <p id="userAlreadyInGroup">User already in group</p>
 
@@ -365,6 +413,8 @@
 
       {{member}}
       <button (click)="removeUserFromGroup(member)">remove</button>
+      <button *ngIf="userIsUser(member)" (click)="changeUserRole({name: member}, 'groupAssis')">Make Group
+        Assis</button>
     </div>
     <br>
     <h2>Rooms</h2>
@@ -392,8 +442,9 @@
         <div *ngFor="let user of room.members">
           {{user}}
           <button class="removeUserFromRoom" (click)="removeUserFromRoom(user, room)">remove</button>
+
           <br>
-          
+
         </div>
         <br><br>
       </div>
@@ -403,18 +454,33 @@
   </div>
 
   <div class="manageUsers" id="manageUsers">
-    <h1>Manage Users</h1>
-    <h2>Users</h2>
-    <br>
-    <div *ngFor="let user of allUsers">
-      <p>{{user.name}} - {{user.role}}</p>
-      <div class="changeRole">
-      <button (click)="deleteUser(user)">Delete User</button><br>
-      <button (click)="changeUserRole(user, 'groupAdmin')">Change role to Group Admin</button><br>
-      <button (click)="changeUserRole(user, 'groupAssis')">Change role to Group Assistant</button><br>
-      <button (click)="changeUserRole(user, 'superAdmin')">Change role to SuperAdmin</button><br>
-      </div>
+    <div class="manageUsersTitle">
+      <h1>Manage Users</h1>
+      <h2>Users</h2>
+      <br>
     </div>
+
+
+    <div class="manageUsersDiv" *ngFor="let user of allUsers">
+      <div>
+        
+        <div class="changeRole">
+          <p class="userTitle">{{user.name}} - {{user.role}}</p>
+        <br>
+          <button class="manageUserBtn" (click)="deleteUser(user)">Delete User</button><br>
+          <button class="manageUserBtn" (click)="changeUserRole(user, 'groupAdmin')">Change role to Group
+            Admin</button><br>
+          <button class="manageUserBtn" (click)="changeUserRole(user, 'groupAssis')">Change role to Group
+            Assistant</button><br>
+          <button class="manageUserBtn" (click)="changeUserRole(user, 'superAdmin')">Change role to
+            SuperAdmin</button><br>
+
+        </div>
+
+      </div>
+      <br>
+    </div>
+    <br>
     <div class="createUser" id="createUser">
       <h2>Create User</h2>
       <input [(ngModel)]="newUsername" placeholder="Username"> <br>
@@ -423,11 +489,12 @@
       <input [(ngModel)]="newPassword" placeholder="Password"> <br>
 
       <button (click)="addUser()" class="btn" id="addUser">Add User</button>
+
+      <button class="btn" (click)="closeForm('manageUsers'); closeUserPopup()" id="mngUsersBtn">Close</button>
     </div>
-    <button class="btn"(click)="closeForm('manageUsers'); closeUserPopup()" id="mngUsersBtn">Close</button>
   </div>
 
-  
+
 </body>
 
 </html>
